@@ -1,6 +1,7 @@
 ﻿using _1.DAL.Context;
 using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,49 +10,48 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class SanPhamRepository:ISanPhamRepository
+    public class ChucVuRepository : IChucVuRepository
     {
         FpolyDBContext _dBContext;
-        public SanPhamRepository()
+        public ChucVuRepository()
         {
-
+            _dBContext = new FpolyDBContext();
         }
-
-        public bool Add(SanPham obj)
+        public bool Add(ChucVu obj)
         {
             if (obj == null) return false;
             obj.Id = Guid.NewGuid();
-            _dBContext.SanPhams.Add(obj);
+            _dBContext.ChucVus.Add(obj);
             _dBContext.SaveChanges();
             return true;
         }
 
-        public bool Delete(SanPham obj)
+        public bool Delete(ChucVu obj)
         {
             if (obj == null) return false;
-            var tempobj = _dBContext.SanPhams.FirstOrDefault(c => c.Id == obj.Id);
+            var tempobj = _dBContext.ChucVus.FirstOrDefault(c => c.Id == obj.Id);
             _dBContext.Remove(tempobj);
             _dBContext.SaveChanges();
             return true;
         }
 
-        public List<SanPham> GetAll()
+        public List<ChucVu> GetAll()
         {
-            return _dBContext.SanPhams.ToList();
+            return _dBContext.ChucVus.ToList();
         }
 
-        public SanPham GetById(Guid id)
+        public ChucVu GetById(Guid id)
         {
             if (id == Guid.Empty) return null;
-            return _dBContext.SanPhams.FirstOrDefault(c => c.Id == id);
+            return _dBContext.ChucVus.FirstOrDefault(c => c.Id == id);
         }
 
-        public bool Update(SanPham obj)
+        public bool Update(ChucVu obj)
         {
             if (obj == null) return false;
-            var tempobj = _dBContext.SanPhams.FirstOrDefault(c => c.Id == obj.Id);
-            tempobj.Ten = obj.Ten;
+            var tempobj = _dBContext.MauSacs.FirstOrDefault(c => c.Id == obj.Id);
             tempobj.Ma = obj.Ma;
+            tempobj.Ten = obj.Ten;
             _dBContext.Update(tempobj);
             _dBContext.SaveChanges();
             return true;
