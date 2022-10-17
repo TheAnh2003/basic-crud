@@ -14,7 +14,7 @@ namespace _1.DAL.Repositories
         FpolyDBContext _dbContext;
         public HoaDonChiTietRepository()
         {
-            _dbContext = new FpolyDBContext;
+            _dbContext = new FpolyDBContext();
         }
         public bool Add(HoaDonChiTiet obj)
         {

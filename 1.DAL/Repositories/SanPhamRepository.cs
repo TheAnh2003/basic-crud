@@ -14,6 +14,7 @@ namespace _1.DAL.Repositories
         FpolyDBContext _dBContext;
         public SanPhamRepository()
         {
+            _dBContext = new FpolyDBContext();
 
         }
 

@@ -10,39 +10,39 @@ using System.Threading.Tasks;
 
 namespace _2.BUS.Services
 {
-    public class QlSanPhamService : IQLSanPhamService
+    public class QLChucVuService : IQLChucVuService
     {
-        private ISanPhamRepository _iSanPhamRepo;
-        public QlSanPhamService()
+        private IChucVuRepository _iChucVuRepo;
+        public QLChucVuService()
         {
-            _iSanPhamRepo = new SanPhamRepository();
+            _iChucVuRepo = new ChucVuRepository();
         }
-        public string Add(SanPham obj)
+        public string Add(ChucVu obj)
         {
             if (obj == null) return "Thêm thất bại";
 
-            if (_iSanPhamRepo.Add(obj))
+            if (_iChucVuRepo.Add(obj))
                 return "Thêm thành công";
             return "Thêm thất bại";
         }
 
-        public string Delete(SanPham obj)
+        public string Delete(ChucVu obj)
         {
             if (obj == null) return "Xóa thất bại";
-            if (_iSanPhamRepo.Delete(obj))
+            if (_iChucVuRepo.Delete(obj))
                 return "Xóa thành công";
             return "Xóa thất bại";
         }
 
-        public List<SanPham> GetAll()
+        public List<ChucVu> GetAll()
         {
-            return _iSanPhamRepo.GetAll().ToList();
+            return _iChucVuRepo.GetAll().ToList();
         }
 
-        public string Update(SanPham obj)
+        public string Update(ChucVu obj)
         {
             if (obj == null) return "Sửa thất bại";
-            if (_iSanPhamRepo.Update(obj))
+            if (_iChucVuRepo.Update(obj))
                 return "Sửa thành công";
             return "Thêm thất bại";
         }

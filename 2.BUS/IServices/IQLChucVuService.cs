@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace _2.BUS.IServices
 {
-    public interface IQLSanPhamService
+    public interface IQLChucVuService
     {
-        string Add(SanPham obj);
-        string Update(SanPham obj);
-        string Delete(SanPham obj);
-        List<SanPham> GetAll();
+        string Add(ChucVu obj);
+        string Update(ChucVu obj);
+        string Delete(ChucVu obj);
+        List<ChucVu> GetAll();
     }
 }
