@@ -1,4 +1,6 @@
-﻿using _2.BUS.IServices;
+﻿using _1.DAL.DomainClass;
+using _2.BUS.IServices;
+using _2.BUS.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,64 +10,72 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using _2.BUS.Services;
 
-namespace _3.PL.Views
+namespace _3.PL.View
 {
     public partial class FrmQLSanPham : Form
     {
-        private IQLSanPhamDetailService iQLSanPhamService;
+        IQLSanPhamService _qLSanPhamService;
+        private Guid _idWhenclick;
         public FrmQLSanPham()
         {
             InitializeComponent();
-            iQLSanPhamService = new QLSanPhamDetailService();
+            _qLSanPhamService = new QlSanPhamService() ;
             LoadData();
-            LoadCMB();
         }
-        private void LoadCMB()
+        public void LoadData()
         {
-            foreach (var x in iQLSanPhamService.GetAll())
+            dgridSanPham.ColumnCount = 3;
+            dgridSanPham.Columns[0].Name = "id";
+            dgridSanPham.Columns[1].Name = "Mã";
+            dgridSanPham.Columns[2].Name = "Tên";
+            dgridSanPham.Rows.Clear();
+            foreach (var x in _qLSanPhamService.GetAll())
             {
-                cmb_dongSp.Items.Add(x.DongSp.Ten);
+                dgridSanPham.Rows.Add(x.Id, x.Ma, x.Ten);
             }
-            cmb_dongSp.SelectedIndex = 0;
-            foreach (var x in iQLSanPhamService.GetAll())
-            {
-                cmb_mauSac.Items.Add(x.MauSac.Ten);
-            }
-            cmb_mauSac.SelectedIndex = 0;
-            foreach (var x in iQLSanPhamService.GetAll())
-            {
-                cmb_nsx.Items.Add(x.Nsx.Ten);
-            }
-            cmb_nsx.SelectedIndex = 0;
-            foreach (var x in iQLSanPhamService.GetAll())
-            {
-                cmb_Sp.Items.Add(x.SanPham.Ten);
-            }
-            cmb_Sp.SelectedIndex = 0;
         }
-        private void LoadData()
+        public SanPham GetDataFromGui()
         {
-            int stt = 1;
-            dgrid_SP.ColumnCount = 11;
-            dgrid_SP.Columns[0].Name = "Stt";
-            dgrid_SP.Columns[1].Name = "Id";
-            dgrid_SP.Columns[1].Visible= false ;
-            dgrid_SP.Columns[2].Name = "Sản phẩm";
-            dgrid_SP.Columns[3].Name = "Dòng SP";
-            dgrid_SP.Columns[4].Name = "Màu sắc";
-            dgrid_SP.Columns[5].Name = "NSX";
-            dgrid_SP.Columns[6].Name = "Số lượng tồn";
-            dgrid_SP.Columns[7].Name = "Mô tả";
-            dgrid_SP.Columns[8].Name = "Giá nhập";
-            dgrid_SP.Columns[9].Name = "Giá bán";
-            dgrid_SP.Columns[10].Name = "Năm BH";
-            dgrid_SP.Rows.Clear();
-            foreach (var x in iQLSanPhamService.GetAll())
-            {
-                dgrid_SP.Rows.Add(stt++,x.SanPham.Ten,x.DongSp.Ten,x.MauSac.Ten,x.Nsx.Ten,x.ChiTietSp.SoLuongTon,x.ChiTietSp.MoTa,x.ChiTietSp.GiaNhap,x.ChiTietSp.GiaBan,x.ChiTietSp.NamBh);
-            }
+            return new SanPham() { Ten = txtTen.Text, Ma = txtMa.Text };
         }
+
+        private void dgridSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            if (rowIndex == _qLSanPhamService.GetAll().Count || rowIndex == -1) return;
+            _idWhenclick = Guid.Parse(dgridSanPham.Rows[rowIndex].Cells[0].Value.ToString());
+            var mau = _qLSanPhamService.GetAll().FirstOrDefault(c => c.Id == _idWhenclick);
+            txtMa.Text = mau.Ma;
+            txtTen.Text = mau.Ten;
+
+        }
+
+
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_qLSanPhamService.Add(GetDataFromGui()));
+            LoadData();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            var obj = GetDataFromGui();
+            obj.Id = _idWhenclick;
+            MessageBox.Show(_qLSanPhamService.Update(obj));
+            LoadData();
+
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            var obj = GetDataFromGui();
+            obj.Id = _idWhenclick;
+            MessageBox.Show(_qLSanPhamService.Delete(obj));
+            LoadData();
+
+        }
+
     }
 }

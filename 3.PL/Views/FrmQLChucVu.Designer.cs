@@ -1,6 +1,6 @@
 ﻿namespace _3.PL.View
 {
-    partial class FrmQLSanPham
+    partial class FrmQLChucVu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgridSanPham = new System.Windows.Forms.DataGridView();
+            this.dgridChucVu = new System.Windows.Forms.DataGridView();
             this.txtTen = new System.Windows.Forms.TextBox();
             this.txtMa = new System.Windows.Forms.TextBox();
             this.btnSua = new System.Windows.Forms.Button();
@@ -36,20 +36,20 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridSanPham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridChucVu)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgridSanPham
+            // dgridChucVu
             // 
-            this.dgridSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgridSanPham.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgridSanPham.Location = new System.Drawing.Point(0, 112);
-            this.dgridSanPham.Name = "dgridSanPham";
-            this.dgridSanPham.RowHeadersWidth = 51;
-            this.dgridSanPham.RowTemplate.Height = 29;
-            this.dgridSanPham.Size = new System.Drawing.Size(458, 110);
-            this.dgridSanPham.TabIndex = 23;
-            this.dgridSanPham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridSanPham_CellClick);
+            this.dgridChucVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridChucVu.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgridChucVu.Location = new System.Drawing.Point(0, 107);
+            this.dgridChucVu.Name = "dgridChucVu";
+            this.dgridChucVu.RowHeadersWidth = 51;
+            this.dgridChucVu.RowTemplate.Height = 29;
+            this.dgridChucVu.Size = new System.Drawing.Size(462, 110);
+            this.dgridChucVu.TabIndex = 23;
+            this.dgridChucVu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridChucVu_CellClick);
             // 
             // txtTen
             // 
@@ -113,12 +113,12 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Tên";
             // 
-            // FrmQLSanPham
+            // FrmQLChucVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 222);
-            this.Controls.Add(this.dgridSanPham);
+            this.ClientSize = new System.Drawing.Size(462, 217);
+            this.Controls.Add(this.dgridChucVu);
             this.Controls.Add(this.txtTen);
             this.Controls.Add(this.txtMa);
             this.Controls.Add(this.btnSua);
@@ -126,9 +126,9 @@
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FrmQLSanPham";
-            this.Text = "FrmQLSanPham";
-            ((System.ComponentModel.ISupportInitialize)(this.dgridSanPham)).EndInit();
+            this.Name = "FrmQLChucVu";
+            this.Text = "FrmQLChucVu";
+            ((System.ComponentModel.ISupportInitialize)(this.dgridChucVu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,7 +136,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgridSanPham;
+        private System.Windows.Forms.DataGridView dgridChucVu;
         private System.Windows.Forms.TextBox txtTen;
         private System.Windows.Forms.TextBox txtMa;
         private System.Windows.Forms.Button btnSua;

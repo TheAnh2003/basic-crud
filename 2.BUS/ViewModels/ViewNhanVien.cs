@@ -12,5 +12,6 @@ namespace _2.BUS.ViewModels
         public NhanVien NhanVien { get; set; }
         public CuaHang CuaHang { get; set; }
         public ChucVu ChucVu { get; set; }
+        
     }
 }

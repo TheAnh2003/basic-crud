@@ -6,59 +6,64 @@ using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2.BUS.Services
+namespace _2.BUS.Service
 {
-    public class QLNhanVienService : IQLNhanVienService
+    public class QLNhanVienService:IQLNhanVienService
     {
-        private INhanVienRepository _iNhaVienRepo;
-        private ICuaHangRepository _cuaHangRepo;
-        private IChucVuRepository _chucVuRepo;
+        INhanVienRepository _nhanVienRepository;
+        ICuaHangRepository _cuaHangRepository;
+        IChucVuRepository _chucVuRepository;
+        public QLNhanVienService()
+        {
+            _nhanVienRepository = new NhanVienRepository();
+            _cuaHangRepository = new CuaHangRepository();
+            _chucVuRepository = new ChucVuRepository();
+        }
+
         public string Add(ViewNhanVien obj)
         {
-            if (obj == null) return "Thêm thất bại";
-            var ghct = obj.NhanVien;
-            if (_iNhaVienRepo.Add(ghct))
-                return "Thêm thành công";
-            return "Thêm thất bại";
+            if (obj == null) return "thêm không thành công";
+            var nv = obj.NhanVien;
+            if (_nhanVienRepository.Add(nv)) return "thêm thành công";
+            return "thêm không thành công";
         }
 
         public string Delete(ViewNhanVien obj)
         {
-            if (obj == null) return "Xóa thất bại";
-            var ghct = obj.NhanVien;
-
-            if (_iNhaVienRepo.Delete(ghct))
-                return "Xóa thành công";
-            return "Xóa thất bại";
+            if (obj == null) return "xóa không thành công";
+            var nv = obj.NhanVien;
+            if (_nhanVienRepository.Delete(nv)) return "xóa thành công";
+            return "xóa không thành công";
         }
 
         public List<ViewNhanVien> GetAll()
         {
-            List<ViewNhanVien> list = new List<ViewNhanVien>();
-            list = (
-                from a in _iNhaVienRepo.GetAll()
-                join b in _chucVuRepo.GetAll() on a.IdCv equals b.Id
-                join c in _cuaHangRepo.GetAll() on a.IdCh equals c.Id
-                select new ViewNhanVien()
-                {
-                    NhanVien = a,
-                    ChucVu = b,
-                    CuaHang = c
-                }).ToList();
-            return list;
+            List<ViewNhanVien> LstNv = new List<ViewNhanVien>();
+            LstNv =
+                (from a in _nhanVienRepository.GetAll()
+                 join b in _cuaHangRepository.GetAll() on a.IdCh equals b.Id
+                 join c in _chucVuRepository.GetAll() on a.IdCv equals c.Id
+                 select new ViewNhanVien()
+                 {
+                     NhanVien = a,
+                     ChucVu=c,
+                     CuaHang=b
+                 }).ToList();
+            return LstNv;
         }
 
         public string Update(ViewNhanVien obj)
         {
-            if (obj == null) return "Sửa thất bại";
-            var ghct = obj.NhanVien;
-
-            if (_iNhaVienRepo.Update(ghct))
-                return "Sửa thành công";
-            return "Thêm thất bại";
+            if (obj == null) return "sửa không thành công";
+            var nv = obj.NhanVien;
+            if (_nhanVienRepository.Update(nv)) return "sửa thành công";
+            return "sửa không thành công";
         }
+
+
     }
 }
