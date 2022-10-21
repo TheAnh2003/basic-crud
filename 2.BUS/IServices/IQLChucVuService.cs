@@ -1,4 +1,5 @@
 ﻿using _1.DAL.DomainClass;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace _2.BUS.IServices
 {
     public interface IQLChucVuService
     {
-        string Add(ChucVu obj);
-        string Update(ChucVu obj);
-        string Delete(ChucVu obj);
-        List<ChucVu> GetAll();
+        string Add(ChucVuView obj);
+        string Update(ChucVuView obj);
+        string Delete(ChucVuView obj);
+        List<ChucVuView> GetAll();
     }
 }

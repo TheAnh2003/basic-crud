@@ -10,9 +10,9 @@ namespace _2.BUS.IServices
 {
     public interface IQlMauSacService
     {
-        string Add(MauSac obj);
-        string Update(MauSac obj);
-        string Delete(MauSac obj);
-        List<MauSac> GetAll();
+        string Add(MauSacView obj);
+        string Update(MauSacView obj);
+        string Delete(MauSacView obj);
+        List<MauSacView> GetAll();
     }
 }

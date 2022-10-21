@@ -2,6 +2,7 @@
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,32 +18,38 @@ namespace _2.BUS.Services
         {
             _iKhachHangRepo = new KhachHangRepository();
         }
-        public string Add(KhachHang obj)
+        public string Add(KhachHangView obj)
         {
             if (obj == null) return "Thêm thất bại";
 
-            if (_iKhachHangRepo.Add(obj))
+            if (_iKhachHangRepo.Add(obj.KhachHang))
                 return "Thêm thành công";
             return "Thêm thất bại";
         }
 
-        public string Delete(KhachHang obj)
+        public string Delete(KhachHangView obj)
         {
             if (obj == null) return "Xóa thất bại";
-            if (_iKhachHangRepo.Delete(obj))
+            if (_iKhachHangRepo.Delete(obj.KhachHang))
                 return "Xóa thành công";
             return "Xóa thất bại";
         }
 
-        public List<KhachHang> GetAll()
+        public List<KhachHangView> GetAll()
         {
-            return _iKhachHangRepo.GetAll().ToList();
+            List<KhachHangView> lst = new List<KhachHangView>();
+            lst = (from a in _iKhachHangRepo.GetAll()
+                   select new KhachHangView()
+                   {
+                       KhachHang = a
+                   }).OrderBy(x => x.KhachHang.Ma).ToList();
+            return lst;
         }
 
-        public string Update(KhachHang obj)
+        public string Update(KhachHangView obj)
         {
             if (obj == null) return "Sửa thất bại";
-            if (_iKhachHangRepo.Update(obj))
+            if (_iKhachHangRepo.Update(obj.KhachHang))
                 return "Sửa thành công";
             return "Thêm thất bại";
         }

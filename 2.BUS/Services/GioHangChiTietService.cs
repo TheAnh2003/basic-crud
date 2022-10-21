@@ -11,14 +11,20 @@ using System.Threading.Tasks;
 
 namespace _2.BUS.Services
 {
-    public class GioHangChiTietService:IQLGioHangChiTietService
+    public class GioHangChiTietService : IQLGioHangChiTietService
     {
         private IGioHangChiTietRepository _iGioHangChiTiet;
         private IChiTietSPRepository _iChiTietSP;
+
+        private IGioHangRepository iGioHangRepository;
+
+        private ISanPhamRepository iSanPhamRepository;
         public GioHangChiTietService()
         {
             _iGioHangChiTiet = new GioHangChiTietRepository();
             _iChiTietSP = new ChiTietSPRepository();
+            iSanPhamRepository = new SanPhamRepository();
+            iGioHangRepository = new GioHangRepository();
         }
 
         public string Add(ViewGioHangChiTiet obj)
@@ -42,16 +48,19 @@ namespace _2.BUS.Services
 
         public List<ViewGioHangChiTiet> GetAll()
         {
-            List<ViewGioHangChiTiet> list = new List<ViewGioHangChiTiet>();
-            list = (
-                from a in _iChiTietSP.GetAll()
-                join b in _iGioHangChiTiet.GetAll() on a.Id equals b.IdChiTietSp
-                select new ViewGioHangChiTiet()
-                {
-                    ChiTietSp = a,
-                    GioHangChiTiet = b
-                }).ToList();
-            return list;
+            List<ViewGioHangChiTiet> lst = new List<ViewGioHangChiTiet>();
+            lst = (from a in _iGioHangChiTiet.GetAll()
+                   join b in iGioHangRepository.GetAll() on a.IdGioHang equals b.Id
+                   join c in _iChiTietSP.GetAll() on a.IdChiTietSp equals c.Id
+                   join d in iSanPhamRepository.GetAll() on c.IdSp equals d.Id
+                   select new ViewGioHangChiTiet()
+                   {
+                       GioHangChiTiet = a,
+                       GioHang = b,
+                       ChiTietSp = c,
+                       SanPham = d
+                   }).ToList();
+            return lst;
         }
 
         public string Update(ViewGioHangChiTiet obj)

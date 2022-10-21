@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using _3.PL.Utility;
-using _3.PL.View;
 using _3.PL.Views;
+using _3.PresentationLayers;
 
 namespace _3.PL.Views
 {
@@ -87,22 +87,22 @@ namespace _3.PL.Views
         }
         private void btn_Chitietsp_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLChiTietSP(), sender);
+            openchildform(new FrmChiTietSp(), sender);
         }
 
         private void btn_chucvu_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLChucVu(), sender);
+            openchildform(new FrmChucVu(), sender);
         }
 
         private void btn_cuahang_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLCuaHang(), sender);
+            openchildform(new FrmCuaHang(), sender);
         }
 
         private void btn_Dongsp_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLDongSp(), sender);
+            openchildform(new FrmDongSanPham(), sender);
         }
 
         private void btn_hoadon_Click(object sender, EventArgs e)
@@ -117,32 +117,32 @@ namespace _3.PL.Views
 
         private void btn_khachhang_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQlKhachHang(), sender);
+            openchildform(new FrmKhachHang(), sender);
         }
 
         private void btn_mausac_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLMauSac(), sender);
+            openchildform(new FrmMauSac(), sender);
         }
 
         private void btn_nhanvien_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLNhanVien(), sender);
+            openchildform(new FrmNhanVien(), sender);
         }
 
         private void btn_Nsx_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLNsx(), sender);
+            openchildform(new FrmNsx(), sender);
         }
 
         private void btn_Sanpham_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLSanPham(), sender);
+            openchildform(new FrmSanPham(), sender);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openchildform(new FrmQLGioHang(), sender);
+            openchildform(new FrmGioHang(), sender);
         }
 
         private void button2_Click(object sender, EventArgs e)

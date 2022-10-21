@@ -1,4 +1,5 @@
 ﻿using _1.DAL.DomainClass;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace _2.BUS.IServices
 {
     public interface IQLSanPhamService
     {
-        string Add(SanPham obj);
-        string Update(SanPham obj);
-        string Delete(SanPham obj);
-        List<SanPham> GetAll();
+        string Add(SanPhamView obj);
+        string Update(SanPhamView obj);
+        string Delete(SanPhamView obj);
+        List<SanPhamView> GetAll();
     }
 }

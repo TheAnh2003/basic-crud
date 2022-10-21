@@ -2,6 +2,7 @@
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,32 +18,38 @@ namespace _2.BUS.Services
         {
             _iSanPhamRepo = new SanPhamRepository();
         }
-        public string Add(SanPham obj)
+        public string Add(SanPhamView obj)
         {
             if (obj == null) return "Thêm thất bại";
 
-            if (_iSanPhamRepo.Add(obj))
+            if (_iSanPhamRepo.Add(obj.SanPham))
                 return "Thêm thành công";
             return "Thêm thất bại";
         }
 
-        public string Delete(SanPham obj)
+        public string Delete(SanPhamView obj)
         {
             if (obj == null) return "Xóa thất bại";
-            if (_iSanPhamRepo.Delete(obj))
+            if (_iSanPhamRepo.Delete(obj.SanPham))
                 return "Xóa thành công";
             return "Xóa thất bại";
         }
 
-        public List<SanPham> GetAll()
+        public List<SanPhamView> GetAll()
         {
-            return _iSanPhamRepo.GetAll().ToList();
+            List<SanPhamView> _lst = new List<SanPhamView>();
+            _lst = (from a in _iSanPhamRepo.GetAll()
+                    select new SanPhamView()
+                    {
+                        SanPham = a
+                    }).ToList();
+            return _lst;
         }
 
-        public string Update(SanPham obj)
+        public string Update(SanPhamView obj)
         {
             if (obj == null) return "Sửa thất bại";
-            if (_iSanPhamRepo.Update(obj))
+            if (_iSanPhamRepo.Update(obj.SanPham))
                 return "Sửa thành công";
             return "Thêm thất bại";
         }

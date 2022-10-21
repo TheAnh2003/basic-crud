@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace _2.BUS.Services
 {
-    internal class ChiTietHoaDonService : IChiTietHoaDonService
+    public class ChiTietHoaDonService : IChiTietHoaDonService
     {
         private IHoaDonChiTietRepository _iHoaDonCTRepo;
         private IChiTietSPRepository _iChiTietSpRepo;

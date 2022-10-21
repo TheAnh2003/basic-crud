@@ -11,5 +11,8 @@ namespace _2.BUS.ViewModels
     {
         public ChiTietSp ChiTietSp { get; set; }
         public GioHangChiTiet GioHangChiTiet { get; set; }
+        public GioHang GioHang { get; set; }
+        public SanPham SanPham { get; set; }
+
     }
 }

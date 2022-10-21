@@ -1,4 +1,5 @@
 ﻿using _1.DAL.DomainClass;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace _2.BUS.IServices
 {
     public interface IQLKhachHangService
     {
-        string Add(KhachHang obj);
-        string Update(KhachHang obj);
-        string Delete(KhachHang obj);
-        List<KhachHang> GetAll();
+        string Add(KhachHangView obj);
+        string Update(KhachHangView obj);
+        string Delete(KhachHangView obj);
+        List<KhachHangView> GetAll();
     }
 }

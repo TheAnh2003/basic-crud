@@ -14,5 +14,6 @@ namespace _2.BUS.ViewModels
         public MauSac MauSac { get; set; }
         public Nsx Nsx { get; set; }
         public DongSp DongSp { get; set; }
+
     }
 }
